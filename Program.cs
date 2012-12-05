@@ -17,13 +17,13 @@ namespace grapeot.SmallWorld
             var h = img.Height;
             var r0 = 512;   // half of the image size
             var p = 0.5;    // control the "height"
-            var phi0 = -Math.PI / 2 + 0.12;    // initial phrase
+            var phi0 = -Math.PI / 2 + 0.12;    // initial phase
             var newImg = new Image<Bgr, byte>(r0 * 2, r0 * 2, new Bgr(Color.White));
             for (int row = 0; row < r0 * 2; row++)
             {
                 for (int col = 0; col < r0 * 2; col++)
                 {
-                    var phi = (Math.Atan2(row - r0, col - r0) + phi0); // * 0.99 to get rid of the small gaps of the original panorama
+                    var phi = (Math.Atan2(row - r0, col - r0) + phi0);
                     if (phi > Math.PI) phi -= 2 * Math.PI;
                     if (phi < -Math.PI) phi += 2 * Math.PI;
                     var r = Math.Sqrt((row - r0) * (row - r0) + (col - r0) * (col - r0));
@@ -34,7 +34,6 @@ namespace grapeot.SmallWorld
                         newImg[row, col] = img[y, x];
                 }
             }
-            //ImageViewer.Show(newImg);
             newImg.Save("result.jpg");
             newImg.Dispose();
             img.Dispose();
